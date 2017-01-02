@@ -6,6 +6,7 @@ function Ball(x,y){
    
 	
 	this.show = function(){
+		fill(140,10,90);
 		ellipse(this.pos.x, this.pos.y, 20, this.r);
 		
 	}

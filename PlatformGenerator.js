@@ -4,6 +4,7 @@ function PlatformGenerator(){
 	this.w = 40;
 	this.h = 5;
 	this.chunkSize = 25;
+	this.nrOfGenerated = 0;
 	
 	this.init = function(w, h, nrOfPlatforms){
 		this.platforms = [];
@@ -24,6 +25,7 @@ function PlatformGenerator(){
 			if(this.platforms[i].y > height + 40){
 				this.platforms.splice(i,1);
 				this.addPlatform();
+				this.nrOfGenerated ++;
 			}
 		}	
 	}
@@ -32,10 +34,16 @@ function PlatformGenerator(){
 		x = random(0 - this.w/2, width - this.w/2);	  
 		y = random(i, i+ (height / this.chunkSize) - this.h);
 		this.platforms.push(new Platform(x, y, this.w, this.h));	
+		 
+
 	}
 	
 	this.getObjects = function() {
 		return this.platforms;
+	}
+	
+	this.getGenerated = function(){
+	return this.nrOfGenerated;
 	}
 }
 	
