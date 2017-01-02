@@ -39,21 +39,25 @@ function Ball(x,y){
 	}
 	
 	this.move = function(velx){
-
-		if(this.vel.x == 0){
+		//print(this.vel);
+		if(abs(this.vel.x + velx) < 3) {
+			this.vel.x += velx;
+		}
+/*		if(this.vel.x == 0){
 			print("vel: " + this.vel.x);
 			this.vel.x = 1
 		}
 		
-		if(this.vel.x < 0 && velx> 0){
-			velx*=-1;
+		if(this.vel.x < 0 && velx > 0){
+			velx *= -0.8;
 		} 
 		
-	    if(abs(this.vel.x) * velx < 5) {
+	    if(abs(this.vel.x) * velx < 3) {
 			this.vel.x *= velx;
 		}
 		
 		print(this.vel.x, velx);		
+		*/
 	}
 	
 	this.checkEdge = function(){

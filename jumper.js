@@ -18,12 +18,13 @@ function draw() {
 	background(153);	
 	noFill();
 	for(var i = height; i > 0; i-=height/plats.chunkSize){
-		rect(0,i,width,height/plats.chunkSize)
+		//rect(0,i,width,height/plats.chunkSize)
 	}
 	
-	if(ball.getPos().y < height/2){
-		plats.scrollAll(abs(ball.getVel().y)/5);
+	if(ball.getPos().y < (height - height/3)){
+		plats.scrollAll(abs(ball.getVel().y)/3);
 	}
+	
 	//plats.scrollAll(1);
 	plats.show();
 	
@@ -38,8 +39,8 @@ function draw() {
 function keyPressed() {
 
   if (keyCode === LEFT_ARROW) {
-    ball.move(-1.1);
+    ball.move(-1.02);
   } else if (keyCode === RIGHT_ARROW) {
-    ball.move(1.1);
+    ball.move(1.02);
   }
 }
