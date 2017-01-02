@@ -2,7 +2,7 @@ function Ball(x,y){
 	this.r = 25;
 	this.pos = createVector(x, y - this.r);
     this.vel = createVector(0,0);
-    this.acc = createVector(0,-1);
+    this.acc = createVector(0,0);
    
 	
 	this.show = function(){
@@ -17,7 +17,12 @@ function Ball(x,y){
 			var i = object[j];
 			var hit = collideRectCircle(i.x, i.y, i.w, i.h+5, this.pos.x, this.pos.y, this.r/2);
 			if(hit && this.vel.y > 0){
-				this.vel.y *= -1;	
+				print(this.vel.y);
+				if(this.vel.y > 3.5) {
+					this.vel.y = 3.5;
+				}
+				this.vel.y *= -1;
+				
 				this.pos.y = i.y - i.h - this.r/2;
 			}
 		}		

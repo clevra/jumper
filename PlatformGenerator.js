@@ -33,7 +33,7 @@ function PlatformGenerator(){
 	this.addPlatform = function(i){
 		x = random(0 - this.w/2, width - this.w/2);	  
 		y = random(i, i+ (height / this.chunkSize) - this.h);
-		this.platforms.push(new Platform(x, y, this.w, this.h));	
+		this.platforms.push(new Platform(x, y, random(25,40), this.h));	
 		 
 
 	}

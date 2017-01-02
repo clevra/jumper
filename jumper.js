@@ -6,8 +6,8 @@ function setup() {
   createCanvas(300,600);
   background(0);
   plats.init(40, 5);
-  gravity = createVector(0, 1);
-  platformIndex = ceil(random(1,3));
+  gravity = createVector(0, 0.1);
+  platformIndex = ceil(random(3,5));
   ball = new Ball(plats.platforms[platformIndex].x + plats.platforms[platformIndex].w /2,
 				  plats.platforms[platformIndex].y);
   
@@ -28,7 +28,7 @@ function draw() {
 	
 	//plats.scrollAll(1);
 	plats.show();
-	fill('#ffcccc');
+	fill('#1111fe');
 	textSize(32);
 	text("Score: " + plats.getGenerated(), 10, 30);
 	ball.applyForce(gravity);
@@ -36,14 +36,22 @@ function draw() {
 	ball.collide(plats.getObjects());	
 	ball.checkEdge();
 	ball.show();
+	 if (keyIsDown(LEFT_ARROW))
+		ball.move(-1.3);
+
+	if (keyIsDown(RIGHT_ARROW))
+		ball.move(1.3);
+
+  
 
 }
 
-function keyPressed() {
+/*function keyPressed() {
 
   if (keyCode === LEFT_ARROW) {
-    ball.move(-1.1);
+    ball.move(-1.3);
   } else if (keyCode === RIGHT_ARROW) {
-    ball.move(1.1);
+    ball.move(1.3);
   }
 }
+*/
