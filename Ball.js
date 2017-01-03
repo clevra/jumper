@@ -32,10 +32,10 @@ function Ball(x,y){
 						this.vel.y *= -4;  //Extra boost if to slow already
 					}
 					else if(this.vel.y < 3) {
-						this.vel.y *= -2; // Boost has penalty if already fast enough
+						this.vel.y *= -2.2; // Boost has penalty if already fast enough
 					}
 					else {
-						this.vel.y *= -1.3;
+						this.vel.y *= -1.75;
 					}
 					object[j].type = platformTypeEnum.NORMAL;
 				}

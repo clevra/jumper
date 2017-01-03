@@ -5,7 +5,7 @@ var gameOver = false;
 var ball;
 
 function setup() {
-  createCanvas(300,600);
+  createCanvas(250,500);
   background(0);
   noLoop();
 }
@@ -34,7 +34,7 @@ function draw() {
 		ball = new Ball(plats.platforms[platformIndex].x + plats.platforms[platformIndex].w /2,
 						plats.platforms[platformIndex].y);
 	}  
-	else{
+	else{ //game started
 		if(ball.getPos().y < (height - height/4)){
 			plats.scrollAll(abs(ball.getVel().y/1.5));
 		}
@@ -58,6 +58,7 @@ function draw() {
 		if (keyIsDown(RIGHT_ARROW)){
 			ball.move(1.3);
 		}
+		plats.scrollAll(plats.getGenerated()/500);
 	}
 
 		
