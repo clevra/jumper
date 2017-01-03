@@ -15,7 +15,7 @@ function draw() {
 
 	background(153);	
 	noFill();
-		if(!gameStarted){
+	if(!gameStarted){
 		fill("#333333");
 		rect(0,0,width,height);
 		fill("#11BB11");
@@ -60,7 +60,7 @@ function draw() {
 		fill("#11BB11");
 		textAlign(CENTER);
 		textSize(12);
-		text("GAME OVER \n press ENTER to restart", width/2, height/2);
+		text("GAME OVER YOU DIEDED!", width/2, height/2);
 		noLoop();
 	}
 
