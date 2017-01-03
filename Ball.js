@@ -27,7 +27,8 @@ function Ball(x,y){
 					this.vel.y *= -1;
 				}
 				else {
-					if(this.vel.y < 1){
+					if(this.vel.y <= 1){
+						this.vel.y = 1.5;
 						this.vel.y *= -4;  //Extra boost if to slow already
 					}
 					else if(this.vel.y < 3) {
