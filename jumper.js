@@ -6,7 +6,7 @@ function setup() {
   createCanvas(300,600);
   background(0);
   plats.init(40, 5);
-  gravity = createVector(0, 0.1);
+  gravity = createVector(0, 0.3);
   platformIndex = ceil(random(3,5));
   ball = new Ball(plats.platforms[platformIndex].x + plats.platforms[platformIndex].w /2,
 				  plats.platforms[platformIndex].y);
@@ -36,14 +36,21 @@ function draw() {
 	ball.collide(plats.getObjects());	
 	ball.checkEdge();
 	ball.show();
-	 if (keyIsDown(LEFT_ARROW))
+	
+	
+	if (keyIsDown(LEFT_ARROW)){
 		ball.move(-1.3);
-
-	if (keyIsDown(RIGHT_ARROW))
+	}
+	if (keyIsDown(RIGHT_ARROW)){
 		ball.move(1.3);
+	}
 
-  
 
+}
+
+function keyReleased() {
+  ball.dampX();
+  return false; // prevent any default behavior
 }
 
 /*function keyPressed() {

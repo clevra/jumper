@@ -17,11 +17,22 @@ function Ball(x,y){
 			var i = object[j];
 			var hit = collideRectCircle(i.x, i.y, i.w, i.h+5, this.pos.x, this.pos.y, this.r/2);
 			if(hit && this.vel.y > 0){
-				print(this.vel.y);
-				if(this.vel.y > 3.5) {
-					this.vel.y = 3.5;
+				if(this.vel.y > 6 && object[j].type != platformTypeEnum.BOOSTER) {
+					this.vel.y = 6;
 				}
-				this.vel.y *= -1;
+				
+				if(object[j].type != platformTypeEnum.BOOSTER) {
+					this.vel.y *= -1;
+				}
+				else {
+					if(this.vel.y < 2){
+						this.vel.y *= -2;  //Extra boost if to slow already
+					}
+					else{
+						this.vel.y *= -1.3; // Boost has penalty if already fast enough
+					}
+					object[j].type = platformTypeEnum.NORMAL;
+				}
 				
 				this.pos.y = i.y - i.h - this.r/2;
 			}
@@ -44,6 +55,9 @@ function Ball(x,y){
 		this.acc.add(force); 
 	}
 	
+	this.dampX = function(){
+		this.vel.x *= 0.1;
+	}
 	this.move = function(velx){
 		//print(this.vel);
 		if(abs(this.vel.x + velx) < 3) {
