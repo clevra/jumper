@@ -15,8 +15,9 @@ function Ball(x,y){
 	this.collide = function(object){
 		for(var j = 0; j < object.length; j++){
 			var i = object[j];
-			var hit = collideRectCircle(i.x, i.y, i.w, i.h+5, this.pos.x, this.pos.y, this.r/2);
-			if(hit && this.vel.y > 0){
+			var hit = collideRectCircle(i.x, i.y, i.w, i.h, this.pos.x, this.pos.y, this.r);
+			
+			if(hit && this.vel.y >= 0){
 				print(this.vel.y);
 				if(this.vel.y > 6 && object[j].type != platformTypeEnum.BOOSTER) {
 					this.vel.y = 6;
@@ -29,8 +30,11 @@ function Ball(x,y){
 					if(this.vel.y < 1){
 						this.vel.y *= -4;  //Extra boost if to slow already
 					}
-					else{
-						this.vel.y *= -1.3; // Boost has penalty if already fast enough
+					else if(this.vel.y < 3) {
+						this.vel.y *= -2; // Boost has penalty if already fast enough
+					}
+					else {
+						this.vel.y *= -1.3;
 					}
 					object[j].type = platformTypeEnum.NORMAL;
 				}
@@ -46,12 +50,7 @@ function Ball(x,y){
 		this.pos.add(this.vel);
 		this.acc.mult(0);
 	}
-	
-		
-	this.wrapWdith = function() {
-		
-		
-	}
+
 	this.applyForce = function(force){
 		this.acc.add(force); 
 	}
@@ -59,39 +58,20 @@ function Ball(x,y){
 	this.dampX = function(){
 		this.vel.x *= 0.1;
 	}
+
 	this.move = function(velx){
-		//print(this.vel);
 		if(abs(this.vel.x + velx) < 3) {
 			this.vel.x += velx;
 		}
-/*		if(this.vel.x == 0){
-			print("vel: " + this.vel.x);
-			this.vel.x = 1
-		}
-		
-		if(this.vel.x < 0 && velx > 0){
-			velx *= -0.8;
-		} 
-		
-	    if(abs(this.vel.x) * velx < 3) {
-			this.vel.x *= velx;
-		}
-		
-		print(this.vel.x, velx);		
-		*/
 	}
 	
 	this.checkEdge = function(){
-		
 		if (this.pos.x < 0){
 			this.pos.x = width;
-			print("passed left edge");
 		}
 		
 		if (this.pos.x > width){
 			this.pos.x = 0;
-			print("passed right edge");
-
 		}
 		
 		if(this.pos.y > height){

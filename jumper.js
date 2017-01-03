@@ -1,4 +1,4 @@
-var plats = new PlatformGenerator();
+var plats;
 var gravity;
 var gameStarted = false;
 var gameOver = false;
@@ -16,15 +16,20 @@ function draw() {
 	background(153);	
 	noFill();
 	if(!gameStarted){
+		plats = new PlatformGenerator();
+		plats.init(40, 5);
+		
 		fill("#333333");
 		rect(0,0,width,height);
+		
 		fill("#11BB11");
 		var message = "press ENTER to start";
 		textAlign(CENTER);
 		textSize(12);
 		text(message, width/2, height/2);
-		 plats.init(40, 5);
+		 
 		gravity = createVector(0, 0.3);
+		
 		platformIndex = ceil(random(3,5));
 		ball = new Ball(plats.platforms[platformIndex].x + plats.platforms[platformIndex].w /2,
 						plats.platforms[platformIndex].y);
@@ -33,17 +38,19 @@ function draw() {
 		if(ball.getPos().y < (height - height/4)){
 			plats.scrollAll(abs(ball.getVel().y/1.5));
 		}
+		
 		plats.show();
+		
 		fill('#1111fe');
 		textSize(22);
 		textAlign(LEFT);
 		text("Score: " + plats.getGenerated(), 10, 30);
+		
 		ball.applyForce(gravity);
 		ball.update();
 		ball.collide(plats.getObjects());	
 		ball.checkEdge();
 		ball.show();
-	
 	
 		if (keyIsDown(LEFT_ARROW)){
 			ball.move(-1.3);
@@ -60,7 +67,7 @@ function draw() {
 		fill("#11BB11");
 		textAlign(CENTER);
 		textSize(12);
-		text("GAME OVER YOU DIEDED!", width/2, height/2);
+		text("GAME OVER YOU DIEDED!\nYour Score: "+plats.getGenerated(), width/2, height/2);
 		noLoop();
 	}
 
@@ -72,7 +79,6 @@ function keyReleased() {
 }
 
 function keyPressed() {
-	print("pressing something");
 	if (keyCode === ENTER){
 		if(!gameStarted) {
 			gameStarted = true;
