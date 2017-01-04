@@ -13,13 +13,13 @@ function setup() {
 function draw() {
     //console.log(plats.platforms[3]);
 
-	background(153);	
+	background("#ccffff");	
 	noFill();
 	if(!gameStarted){
 		plats = new PlatformGenerator();
 		plats.init(40, 5);
 		
-		fill("#333333");
+		fill("#553333");
 		rect(0,0,width,height);
 		
 		fill("#11BB11");

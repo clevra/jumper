@@ -15,8 +15,9 @@ function Platform (x, y, w, h) {
   }
   
   this.show = function(){
-	this.color = this.type == platformTypeEnum.NORMAL ? "#11aa00" : '#11eeff';
+	this.color = this.type == platformTypeEnum.NORMAL ? "#66cc66" : '#ff6600';
 	fill(this.color);
+	noStroke();
 	rect(this.x,this.y, w, h);
   }
   
