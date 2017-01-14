@@ -18,7 +18,6 @@ function Ball(x,y){
 			var hit = collideRectCircle(i.x, i.y, i.w, i.h, this.pos.x, this.pos.y, this.r);
 			
 			if(hit && this.vel.y >= 0){
-				print(this.vel.y);
 				if(this.vel.y > 6 && object[j].type != platformTypeEnum.BOOSTER) {
 					this.vel.y = 6;
 				}

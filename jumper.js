@@ -3,16 +3,17 @@ var gravity;
 var gameStarted = false;
 var gameOver = false;
 var ball;
+var currentScore;
 
 function setup() {
-  createCanvas(250,500);
+  var myCanvas = createCanvas(250,500);
+  myCanvas.parent("jumperCanvas");
+  currentScore= document.getElementById("currentScore");
   background(0);
   noLoop();
 }
 
 function draw() {
-    //console.log(plats.platforms[3]);
-
 	background("#ccffff");	
 	noFill();
 	if(!gameStarted){
@@ -36,16 +37,13 @@ function draw() {
 	}  
 	else{ //game started
 		if(ball.getPos().y < (height - height/4)){
-			plats.scrollAll(abs(ball.getVel().y/1.5));
+			plats.scrollAll(abs(ball.getVel().y/1.3));
 		}
 		
 		plats.show();
-		
-		fill('#1111fe');
-		textSize(22);
-		textAlign(LEFT);
-		text("Score: " + plats.getGenerated(), 10, 30);
-		
+	
+		currentScore.innerHTML = "Score: " + plats.getGenerated();
+			
 		ball.applyForce(gravity);
 		ball.update();
 		ball.collide(plats.getObjects());	
